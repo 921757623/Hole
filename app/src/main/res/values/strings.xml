@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">My Hole</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_hint">搜搜你想倾听的</string>
+    <string name="threepoint_description">other functions</string>
+    <string name="star_description">Number of people followed</string>
+    <string name="comments_description">Number of comments</string>
+    <string name="thumbs_up_description">Number of thumbs_up</string>
+    <string name="view_description">A searched picture</string>
+    <string name="_0">0</string>
+    <string name="error">哎呀，出错啦~~</string>
+</resources>
