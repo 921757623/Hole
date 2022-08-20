@@ -27,7 +27,7 @@ class HomeScreenFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.recyclerView.adapter = ItemAdapter()
+        binding.recyclerView.adapter = ItemAdapter(viewModel)
         binding.recyclerView.addItemDecoration(SpaceItemDecoration(0, 20))
         initRefresh()
     }

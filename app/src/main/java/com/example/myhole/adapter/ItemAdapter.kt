@@ -15,6 +15,8 @@ import com.example.myhole.model.Hole
 import com.example.myhole.model.Interact
 import com.example.myhole.network.HustHoleApi
 import com.example.myhole.network.HustHoleApiService
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 
 /**
@@ -24,64 +26,45 @@ import okhttp3.ResponseBody
  * @version :1.0
  * @author
  */
-class ItemAdapter : ListAdapter<Hole,
+class ItemAdapter(private val viewModel: HomeScreenViewModel) : ListAdapter<Hole,
         ItemAdapter.ItemViewHolder>(DiffCallback) {
 
     class ItemViewHolder(
-        private var binding: ListItemBinding
+        private var binding: ListItemBinding,
+        private val viewModel: HomeScreenViewModel
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(hole: Hole) {
-            binding.let {
-                it.thumbsUp.setOnClickListener {
+            binding.apply {
+                thumbsUp.setOnClickListener {
                     if (binding.hole?.isThumb == true) {
                         binding.thumbsUp.setImageResource(R.drawable.ic_thumb_inactive)
                         binding.hole?.thumb = binding.hole?.thumb!! - 1
                         binding.upNum.text = binding.hole?.thumb.toString()
-                        try {
-                            HustHoleApi.retrofitService.postInteractUnLike(Interact(hole.holeID))
-                                .execute()
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
+                        viewModel.postUnLike(Interact(hole.holeID))
                     } else {
                         binding.thumbsUp.setImageResource(R.drawable.ic_thumbs_active)
                         binding.hole?.thumb = binding.hole?.thumb!! + 1
                         binding.upNum.text = binding.hole?.thumb.toString()
-                        try {
-                            HustHoleApi.retrofitService.postInteractLike(Interact(hole.holeID))
-                                .execute()
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
+                        viewModel.postLike(Interact(hole.holeID))
                     }
                     binding.hole?.isThumb = !binding.hole?.isThumb!!
                 }
-                it.imgStar.setOnClickListener {
+                imgStar.setOnClickListener {
                     if (binding.hole?.isFollow == true) {
-                        binding.imgStar.setImageResource(R.drawable.ic_follow_inactive)
+                        binding.imgStar.setImageResource(R.drawable.ic_thumb_inactive)
                         binding.hole?.follow = binding.hole?.follow!! - 1
                         binding.textStar.text = binding.hole?.follow.toString()
-                        try {
-                            HustHoleApi.retrofitService.postInteractUnFollow(Interact(hole.holeID))
-                                .execute()
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
+                        viewModel.postUnFollow(Interact(hole.holeID))
                     } else {
-                        binding.imgStar.setImageResource(R.drawable.ic_follow_active)
+                        binding.imgStar.setImageResource(R.drawable.ic_thumbs_active)
                         binding.hole?.follow = binding.hole?.follow!! + 1
                         binding.textStar.text = binding.hole?.follow.toString()
-                        try {
-                            HustHoleApi.retrofitService.postInteractFollow(Interact(hole.holeID))
-                                .execute()
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
+                        viewModel.postFollow(Interact(hole.holeID))
                     }
-                    binding.hole?.isFollow = !binding.hole?.isFollow!!
+                    binding.hole?.isFollow= !binding.hole?.isFollow!!
                 }
-                it.hole = hole
-                it.executePendingBindings()
+                this.hole = hole
+                executePendingBindings()
             }
         }
     }
@@ -93,7 +76,7 @@ class ItemAdapter : ListAdapter<Hole,
         return ItemViewHolder(
             ListItemBinding.inflate(
                 LayoutInflater.from(parent.context)
-            )
+            ), viewModel
         )
     }
 

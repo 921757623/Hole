@@ -5,6 +5,7 @@ buildscript {
         // where the versions of the plugin needs to be the same as the version of the
         // library defined in the app Gradle file
         kotlin_version = "1.6.21"
+        nav_version = "2.3.1"
     }
     repositories {
         google()

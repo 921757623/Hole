@@ -43,8 +43,8 @@ interface HustHoleApiService {
     suspend fun getHoleList(
         @Query("timestamp") timestamp: String,
         @Query("offset") offset: Int = 0,
-        @Query("limit") getHoleNum: Int = 20,
-        @Query("mode") mode: String = "LATEST_REPLY"
+        @Query("mode") mode: String = "LATEST_REPLY",
+        @Query("limit") getHoleNum: Int = 20
     ): List<Hole>
 
     @Headers("Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsImlkIjoiOTA3NyIsImV4cCI6MTY2MzM3Njk1MSwidGltZXN0YW1wIjoiMTY0OTU3NTIyOCJ9.YZYiOXZL57-mlC81kgbnZdDAr513cCJa2ccg9TJB-Y4")
