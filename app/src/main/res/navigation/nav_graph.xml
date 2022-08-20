@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/homeScreenFragment">
+
+    <fragment
+        android:id="@+id/homeScreenFragment"
+        android:name="com.example.myhole.HomeScreenFragment"
+        android:label="1037树洞" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_singleHoleFragment"
+            app:destination="@id/singleHoleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleHoleFragment"
+        android:name="com.example.myhole.SingleHoleFragment"
+        android:label="1037树洞" >
+        <argument
+            android:name="holeId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>

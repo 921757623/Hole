@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myhole.R
 import com.example.myhole.data.HustHoleApiStatus
 import com.example.myhole.model.Hole
+import com.example.myhole.model.ReplyOuterVO
 import com.example.myhole.network.HustHoleApiService
 
 
@@ -27,6 +28,15 @@ fun bindRecyclerView(
     data: List<Hole>?
 ) {
     val adapter = recyclerView.adapter as ItemAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("replylist")
+fun bindReplyRecyclerView(
+    recyclerView: RecyclerView,
+    data: List<ReplyOuterVO>?
+) {
+    val adapter = recyclerView.adapter as SingleItemAdapter
     adapter.submitList(data)
 }
 

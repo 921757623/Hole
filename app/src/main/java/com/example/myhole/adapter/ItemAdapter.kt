@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.LiveData
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myhole.HomeScreenFragment
+import com.example.myhole.HomeScreenFragmentDirections
 import com.example.myhole.R
 import com.example.myhole.data.HomeScreenViewModel
 import com.example.myhole.data.HustHoleApiStatus
@@ -123,6 +125,10 @@ class ItemAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+        holder.itemView.setOnClickListener {
+            val action = HomeScreenFragmentDirections.actionHomeScreenFragmentToSingleHoleFragment(item.holeID)
+            homeScreenFragment.view?.findNavController()?.navigate(action)
+        }
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Hole>() {

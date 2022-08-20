@@ -3,6 +3,7 @@ package com.example.myhole.network
 
 import com.example.myhole.model.Hole
 import com.example.myhole.model.Interact
+import com.example.myhole.model.ReplyOuterVO
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -48,7 +49,17 @@ interface HustHoleApiService {
 
     @Headers("Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsImlkIjoiOTA3NyIsImV4cCI6MTY2MzM3Njk1MSwidGltZXN0YW1wIjoiMTY0OTU3NTIyOCJ9.YZYiOXZL57-mlC81kgbnZdDAr513cCJa2ccg9TJB-Y4")
     @GET("hole/one")
-    fun getOneHole(@Body data: Interact): Hole
+    suspend fun getOneHole(@Query("holeId") data: String): Hole
+
+    @Headers("Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsImlkIjoiOTA3NyIsImV4cCI6MTY2MzM3Njk1MSwidGltZXN0YW1wIjoiMTY0OTU3NTIyOCJ9.YZYiOXZL57-mlC81kgbnZdDAr513cCJa2ccg9TJB-Y4")
+    @GET("reply/list")
+    suspend fun getHoleReply(
+        @Query("holeId") holeId: String?,
+        @Query("timestamp") timestamp: String,
+        @Query("offset") offset: Int = 0,
+        @Query("limit") getHoleNum: Int = 20,
+        @Query("descend") descend: Boolean = true
+    ): List<ReplyOuterVO>
 
     @Headers("Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsImlkIjoiOTA3NyIsImV4cCI6MTY2MzM3Njk1MSwidGltZXN0YW1wIjoiMTY0OTU3NTIyOCJ9.YZYiOXZL57-mlC81kgbnZdDAr513cCJa2ccg9TJB-Y4")
     @POST("interact/like")

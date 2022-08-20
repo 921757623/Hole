@@ -4,45 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="hole"
             type="com.example.myhole.model.Hole" />
     </data>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/item_view"
+        android:id="@+id/head_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="20dp">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="12dp">
 
             <TextView
-                android:id="@+id/holeNum"
+                android:id="@+id/owner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@{'#' + hole.holeID}"
+                android:text="@string/hole_owner"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="#10086" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
+                android:layout_marginTop="2dp"
                 android:text="@{hole.creatAt}"
                 android:textColor="#CBCBCB"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/holeNum"
+                app:layout_constraintTop_toBottomOf="@+id/owner"
                 tools:text="19:32 2031/32/12" />
 
             <TextView

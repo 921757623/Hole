@@ -22,7 +22,7 @@ class Interact(
 /**
  * Hole
  */
-data class Hole (
+data class Hole(
     /**
      * 内容
      */
@@ -89,14 +89,14 @@ data class Hole (
      * 点赞数
      */
     var thumb: Int? = null
-){
+) {
 
 }
 
 /**
  * SignInRequest
  */
-data class SignIn (
+data class SignIn(
     /**
      * 邮箱
      */
@@ -126,13 +126,142 @@ enum class Role(val value: String) {
 
     companion object {
         public fun fromValue(value: String): Role = when (value) {
-            "ADMIN"    -> Admin
-            "ALL"      -> All
-            "CCPS"     -> Ccps
+            "ADMIN" -> Admin
+            "ALL" -> All
+            "CCPS" -> Ccps
             "OFFICIAL" -> Official
-            "SYSTEM"   -> RoleSYSTEM
-            "USER"     -> User
-            else       -> throw IllegalArgumentException()
+            "SYSTEM" -> RoleSYSTEM
+            "USER" -> User
+            else -> throw IllegalArgumentException()
         }
     }
 }
+
+data class ReplyOuterVO(
+    /**
+     * 子评论总数
+     */
+    val count: String? = null,
+
+    /**
+     * 子评论
+     */
+    val innerList: List<ReplyVO>? = null,
+
+    val self: ReplyVO? = null
+)
+
+/**
+ * ReplyVO
+ */
+data class ReplyVO(
+    /**
+     * 树洞内容
+     */
+    val content: String? = null,
+
+    /**
+     * 发布时间
+     */
+    val creatAt: String? = null,
+
+    val hole: HoleDto? = null,
+
+    /**
+     * 树洞id
+     */
+    @Json(name = "holeId")
+    val holeID: String? = null,
+
+    /**
+     * 点赞数
+     */
+    val likeCount: Long? = null,
+
+    /**
+     * 是否我的
+     */
+    val mine: Boolean? = null,
+
+    /**
+     * 昵称
+     */
+    val nickname: String? = null,
+
+    val replied: ReplyDto? = null,
+
+    /**
+     * 评论id
+     */
+    @Json(name = "replyId")
+    val replyID: String? = null,
+
+    /**
+     * 回复的评论id
+     */
+    val replyTo: String? = null,
+
+    /**
+     * 楼内回复的评论id
+     */
+    val replyToInner: String? = null,
+
+    /**
+     * 是否点赞
+     */
+    val thumb: Boolean? = null
+)
+
+/**
+ * HoleDto
+ */
+data class HoleDto(
+    val content: String? = null,
+    val createAt: String? = null,
+    val deleteAt: String? = null,
+    val followCount: Long? = null,
+
+    @Json(name = "forestId")
+    val forestID: String? = null,
+
+    @Json(name = "holeId")
+    val holeID: String? = null,
+
+    val lastReplyAt: String? = null,
+    val likeCount: Long? = null,
+
+    @Json(name = "ownerId")
+    val ownerID: String? = null,
+
+    val participant: Long? = null,
+    val replyCount: Long? = null,
+    val updateAt: String? = null
+)
+
+/**
+ * ReplyDto
+ */
+data class ReplyDto(
+    val content: String? = null,
+    val createAt: String? = null,
+    val deleteAt: String? = null,
+
+    @Json(name = "holeId")
+    val holeID: String? = null,
+
+    val likeCount: Long? = null,
+    val nickname: String? = null,
+
+    @Json(name = "repliedUserId")
+    val repliedUserID: String? = null,
+
+    @Json(name = "replyId")
+    val replyID: String? = null,
+
+    val replyTo: String? = null,
+    val replyToInner: String? = null,
+    val updateAt: String? = null,
+
+    @Json(name = "userId")
+    val userID: String? = null
+)
