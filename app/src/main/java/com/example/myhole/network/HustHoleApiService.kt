@@ -36,7 +36,6 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .client(okHttpClient)
     .build()
-
 interface HustHoleApiService {
     @Headers("Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsImlkIjoiOTA3NyIsImV4cCI6MTY2MzM3Njk1MSwidGltZXN0YW1wIjoiMTY0OTU3NTIyOCJ9.YZYiOXZL57-mlC81kgbnZdDAr513cCJa2ccg9TJB-Y4")
     @GET("hole/list")

@@ -82,47 +82,4 @@ class HomeScreenViewModel : ViewModel() {
         return sdf.format(date).toString()
     }
 
-    fun postLike(data: Interact) {
-        _status.value = HustHoleApiStatus.LOADING
-        try {
-            HustHoleApi.retrofitService.postInteractLike(data).execute()
-            _status.value = HustHoleApiStatus.DONE
-        } catch (e: Exception) {
-            _status.value = HustHoleApiStatus.ERROR
-            e.printStackTrace()
-        }
-    }
-
-    fun postUnLike(data: Interact) {
-        _status.value = HustHoleApiStatus.LOADING
-        try {
-            HustHoleApi.retrofitService.postInteractUnLike(data).execute()
-            _status.value = HustHoleApiStatus.DONE
-        } catch (e: Exception) {
-            _status.value = HustHoleApiStatus.ERROR
-            e.printStackTrace()
-        }
-    }
-
-    fun postFollow(data: Interact) {
-        _status.value = HustHoleApiStatus.LOADING
-        try {
-            HustHoleApi.retrofitService.postInteractFollow(data).execute()
-            _status.value = HustHoleApiStatus.DONE
-        } catch (e: Exception) {
-            _status.value = HustHoleApiStatus.ERROR
-            e.printStackTrace()
-        }
-    }
-
-    fun postUnFollow(data: Interact) {
-        _status.value = HustHoleApiStatus.LOADING
-        try {
-            HustHoleApi.retrofitService.postInteractUnFollow(data).execute()
-            _status.value = HustHoleApiStatus.DONE
-        } catch (e: Exception) {
-            _status.value = HustHoleApiStatus.ERROR
-            e.printStackTrace()
-        }
-    }
 }

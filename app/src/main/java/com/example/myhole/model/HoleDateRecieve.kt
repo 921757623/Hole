@@ -17,10 +17,7 @@ import java.util.*
 class Interact(
     val holeId: String?
 ) {
-
 }
-
-
 
 /**
  * Hole
