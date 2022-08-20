@@ -44,6 +44,7 @@ class SingleHoleFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.getHole(ownerHoleId!!)
         binding.singleRecycleView.adapter = SingleItemAdapter(this, ownerHoleId, viewModel)
         binding.singleRecycleView.addItemDecoration(SpaceItemDecoration(0, 20))
     }

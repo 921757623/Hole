@@ -146,7 +146,6 @@ class SingleItemAdapter(
         position: Int
     ) {
         if (holder is HeadItemHolder) {
-            viewModel.getHole(holeId!!)
             holder.bind(viewModel.hole.value!!)
         } else if (holder is ReplyItemHolder) {
             val item = getItem(position)
