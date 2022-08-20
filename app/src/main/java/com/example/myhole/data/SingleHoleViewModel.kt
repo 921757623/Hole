@@ -1,6 +1,9 @@
 package com.example.myhole.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.myhole.model.Hole
 
 /**
  *@classname SingleHoleViewModel
@@ -9,6 +12,10 @@ import androidx.lifecycle.ViewModel
  * @version :1.0
  * @author
  */
-class SingleHoleViewModel : ViewModel() {
+enum class SingleHoleApiStatus { LOADING, ERROR, DONE }
 
+class SingleHoleViewModel : ViewModel() {
+    private val _singleHoleList = MutableLiveData<List<Hole>>()
+
+    val singleHoleList: LiveData<List<Hole>> = _singleHoleList
 }

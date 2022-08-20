@@ -9,4 +9,5 @@
     <string name="view_description">A searched picture</string>
     <string name="_0">0</string>
     <string name="error">哎呀，出错啦~~</string>
+    <string name="hole_owner">洞主</string>
 </resources>
